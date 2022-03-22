@@ -1,23 +1,21 @@
-import logo from './logo.svg'
-import './App.css'
+import Navbar from './components/Navbar'
+import MainContent from './components/MainContent'
+import Home from './pages/Home'
+import Search from './pages/Search'
+import { Route } from 'wouter'
+import SearchBar from 'src/components/SearchBar'
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='bg-gray-900 min-h-screen'>
+      <Navbar />
+
+      <MainContent>
+        <SearchBar />
+
+        <Route path='/' component={Home} />
+        <Route path='/search/:keyword' component={Search} />
+      </MainContent>
     </div>
   )
 }

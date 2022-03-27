@@ -10,12 +10,16 @@ export default function RelatedGifs({ gifID }) {
 
   useEffect(() => {
     setLoading(true)
-    getRelatedGifs(gifID)
+    const controller = new AbortController()
+    const signal = controller.signal
+    getRelatedGifs(gifID, signal)
       .then((gif) => {
         setGifs(gif)
         setLoading(false)
       })
       .catch((err) => console.log(err))
+
+    return () => controller.abort()
   }, [gifID])
 
   console.log(gifs)

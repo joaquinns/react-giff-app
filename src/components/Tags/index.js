@@ -7,7 +7,11 @@ export default function Tags({ title }) {
   const [tags, setTags] = useState([])
 
   useEffect(() => {
-    getTagsGifs(title).then(setTags)
+    const controller = new AbortController()
+    const signal = controller.signal
+    getTagsGifs(title, signal).then(setTags)
+
+    return () => controller.abort()
   }, [title])
 
   return (

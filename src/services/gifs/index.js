@@ -54,9 +54,10 @@ export const getGifById = (gifID) => {
     })
 }
 
-export const getTagsGifs = (term) => {
+export const getTagsGifs = (term, signal) => {
   return fetch(
-    `https://api.giphy.com/v1/tags/related/${term}?api_key=${API_KEY}&limit=5`
+    `https://api.giphy.com/v1/tags/related/${term}?api_key=${API_KEY}&limit=5`,
+    { signal }
   )
     .then((res) => res.json())
     .then((res) => {
@@ -65,9 +66,10 @@ export const getTagsGifs = (term) => {
     })
 }
 
-export const getRelatedGifs = (gifID) => {
+export const getRelatedGifs = (gifID, signal) => {
   return fetch(
-    `https://api.giphy.com/v1/gifs/related?gif_id=${gifID}&api_key=${API_KEY}&limit=10`
+    `https://api.giphy.com/v1/gifs/related?gif_id=${gifID}&api_key=${API_KEY}&limit=10`,
+    { signal }
   )
     .then((res) => res.json())
     .then((res) => {

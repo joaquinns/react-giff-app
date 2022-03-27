@@ -12,9 +12,17 @@ export const getGifs = (signal) => {
     })
 }
 
-export const getSearch = (keyword, signal) => {
+export const getSearch = ({
+  keyword,
+  signal,
+  limit = 10,
+  raiting = 'g',
+  page = 0
+} = {}) => {
   return fetch(
-    `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=10`,
+    `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${
+      page * limit
+    }&raiting=${raiting}`,
     { signal }
   )
     .then((res) => res.json())
@@ -23,5 +31,47 @@ export const getSearch = (keyword, signal) => {
       if (Array.isArray(data)) {
         return data
       }
+    })
+}
+
+export const getSearchTerms = () => {
+  return fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
+    .then((res) => res.json())
+    .then((res) => {
+      const { data = [] } = res
+      if (Array.isArray(data)) {
+        return data
+      }
+    })
+}
+
+export const getGifById = (gifID) => {
+  return fetch(`https://api.giphy.com/v1/gifs/${gifID}?api_key=${API_KEY}`)
+    .then((res) => res.json())
+    .then((res) => {
+      const { data = {} } = res
+      return data
+    })
+}
+
+export const getTagsGifs = (term) => {
+  return fetch(
+    `https://api.giphy.com/v1/tags/related/${term}?api_key=${API_KEY}&limit=5`
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      const { data = {} } = res
+      return data
+    })
+}
+
+export const getRelatedGifs = (gifID) => {
+  return fetch(
+    `https://api.giphy.com/v1/gifs/related?gif_id=${gifID}&api_key=${API_KEY}&limit=10`
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      const { data = [] } = res
+      return data
     })
 }

@@ -4,6 +4,7 @@ import LazyList from 'src/components/ListOfTrending'
 import { Helmet } from 'react-helmet-async'
 import { useGif } from 'src/hooks/useGif'
 import SearchBar from 'src/components/SearchBar'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function Home() {
   const { loading, gifs } = useGif()
@@ -29,7 +30,7 @@ export default function Home() {
         )}
         {gifs.map((gif) => (
           <Gif
-            key={gif.id}
+            key={uuidv4()}
             id={gif.id}
             title={gif.title}
             gifUrl={gif.images.downsized_medium.url}

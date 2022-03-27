@@ -1,12 +1,12 @@
-import Navbar from './components/Navbar'
-import MainContent from './components/MainContent'
-import Home from './pages/Home'
-import Search from './pages/Search'
-import NotFound from './pages/NotFound'
+import Navbar from 'src/components/Navbar'
+import MainContent from 'src/components/MainContent'
+import Home from 'src/pages/Home'
+import Search from 'src/pages/Search'
+import NotFound from 'src/pages/NotFound'
 import { Route, Switch } from 'wouter'
 import { HelmetProvider } from 'react-helmet-async'
-import Gif from './pages/Gif'
-import ScrollTopButton from './components/ScrollTopButton'
+import Gif from 'src/pages/Gif'
+import ScrollTopButton from 'src/components/ScrollTopButton'
 
 function App() {
   return (

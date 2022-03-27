@@ -4,6 +4,7 @@ import { getGifById } from 'src/services/gifs'
 import Tags from 'src/components/Tags'
 import RelatedGifs from 'src/components/RelatedGifs'
 import { Helmet } from 'react-helmet-async'
+import CopyButton from 'src/components/CopyButton'
 
 export default function Gif({ params }) {
   const { gifID } = params
@@ -17,10 +18,8 @@ export default function Gif({ params }) {
         setGif(singleGif)
         setLoading(false)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.err(err))
   }, [gifID])
-
-  console.log(gif)
 
   return (
     <>
@@ -29,10 +28,12 @@ export default function Gif({ params }) {
           <Helmet>
             <title>Cargando...</title>
           </Helmet>
-          <h1>Loading</h1>
         </>
       )}
       <div className='p-4'>
+        <Helmet>
+          <title>{String(gif?.title)} || Ghiff App</title>
+        </Helmet>
         <h1 className='text-gray-200 text-4xl my-8 font-extrabold text-center'>
           {gif?.title}
         </h1>
@@ -40,22 +41,16 @@ export default function Gif({ params }) {
         <section className='flex flex-col items-center'>
           <div className='flex flex-col md:flex-row gap-2 md:items-end'>
             <img
+              loading='lazy'
               src={gif?.images?.downsized_medium.url}
-              className='h-80 w-auto md:max-w-lg bg-red-400'
+              className='h-80 w-full md:max-w-lg bg-red-400'
             />
-            <button className=' bg-slate-800 text-white font-bold px-5 py-2 rounded hover:opacity-70 transition-opacity duration-200'>
-              Copy
-            </button>
+            <CopyButton text={gif?.images?.downsized_medium.url} />
           </div>
           <Tags title={gif.title} />
-
           <RelatedGifs gifID={gifID} />
         </section>
       </div>
-
-      <Helmet>
-        <title>{String(gif?.title)} || Ghiff App</title>
-      </Helmet>
     </>
   )
 }

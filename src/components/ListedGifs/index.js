@@ -19,10 +19,11 @@ export default function ListedGifs({ keyword, raiting }) {
     once: false
   })
 
-  console.log(isNearScreen)
+  // some error if you pass in the callback hook a callback into a debounce
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleNextPage = useCallback(
     debounce(() => setPage((prevPage) => prevPage + 1), 200),
-    []
+    [setPage]
   )
 
   useEffect(() => {

@@ -9,8 +9,6 @@ export default function SearchBar({
   initialKeyword = '',
   initialRaiting = 'g'
 }) {
-  // const [keyword, setKeyword] = useState(decodeURIComponent(initialKeyword))
-  // const [raiting, setRaiting] = useState(initialRaiting)
   const [, pushLocation] = useLocation()
 
   const { keyword, raiting, resetKeyword, updateKeyword, updateRaiting } =
@@ -21,18 +19,15 @@ export default function SearchBar({
     if (!keyword || keyword === '') {
       return console.error('empty string')
     }
-    // setKeyword('')
     resetKeyword()
     pushLocation(`/search/${keyword}/${raiting}`)
   }
 
   const handleChange = (e) => {
-    // setKeyword(e.target.value)
     updateKeyword(e.target.value)
   }
 
   const handleChangeRaiting = (e) => {
-    // setRaiting(e.target.value)
     updateRaiting(e.target.value)
   }
 

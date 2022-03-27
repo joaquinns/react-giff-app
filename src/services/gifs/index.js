@@ -1,5 +1,5 @@
 const API_KEY = 'NGAcmNPwJfuE8nc69hIWVDd8pkqJsh77'
-const API_URL = `https://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}&limit=10`
+const API_URL = `https://api.giphy.com/v1`
 
 export const getGifs = (signal) => {
   return fetch(API_URL, { signal })
@@ -20,7 +20,7 @@ export const getSearch = ({
   page = 0
 } = {}) => {
   return fetch(
-    `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${
+    `${API_URL}/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=${limit}&offset=${
       page * limit
     }&raiting=${raiting}`,
     { signal }
@@ -35,7 +35,7 @@ export const getSearch = ({
 }
 
 export const getSearchTerms = () => {
-  return fetch(`https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`)
+  return fetch(`${API_URL}/trending/searches?api_key=${API_KEY}`)
     .then((res) => res.json())
     .then((res) => {
       const { data = [] } = res
@@ -46,7 +46,7 @@ export const getSearchTerms = () => {
 }
 
 export const getGifById = (gifID) => {
-  return fetch(`https://api.giphy.com/v1/gifs/${gifID}?api_key=${API_KEY}`)
+  return fetch(`${API_URL}/gifs/${gifID}?api_key=${API_KEY}`)
     .then((res) => res.json())
     .then((res) => {
       const { data = {} } = res
@@ -55,10 +55,9 @@ export const getGifById = (gifID) => {
 }
 
 export const getTagsGifs = (term, signal) => {
-  return fetch(
-    `https://api.giphy.com/v1/tags/related/${term}?api_key=${API_KEY}&limit=5`,
-    { signal }
-  )
+  return fetch(`${API_URL}/tags/related/${term}?api_key=${API_KEY}&limit=5`, {
+    signal
+  })
     .then((res) => res.json())
     .then((res) => {
       const { data = {} } = res
@@ -68,7 +67,7 @@ export const getTagsGifs = (term, signal) => {
 
 export const getRelatedGifs = (gifID, signal) => {
   return fetch(
-    `https://api.giphy.com/v1/gifs/related?gif_id=${gifID}&api_key=${API_KEY}&limit=10`,
+    `${API_URL}/gifs/related?gif_id=${gifID}&api_key=${API_KEY}&limit=10`,
     { signal }
   )
     .then((res) => res.json())

@@ -5,11 +5,13 @@ import Search from './pages/Search'
 import { Route } from 'wouter'
 import { HelmetProvider } from 'react-helmet-async'
 import Gif from './pages/Gif'
+import ScrollTopButton from './components/ScrollTopButton'
 
 function App() {
   return (
     <HelmetProvider>
       <div className='bg-gray-900 min-h-screen'>
+        <ScrollTopButton />
         <Navbar />
 
         <MainContent>

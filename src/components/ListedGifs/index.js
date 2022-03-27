@@ -20,13 +20,6 @@ export default function ListedGifs({ keyword, raiting }) {
   })
 
   console.log(isNearScreen)
-  /*   const handleNextPage = () => {
-    setPage((prevPage) => prevPage + 1)
-  } */
-
-  // const handleNextPage = () => console.log('next page')
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleNextPage = useCallback(
     debounce(() => setPage((prevPage) => prevPage + 1), 200),
     []
@@ -67,12 +60,6 @@ export default function ListedGifs({ keyword, raiting }) {
             </>
           ))}
       </div>
-      {/*       <button
-        className='w-full text-white py-2 px-4 text-center bg-red-400 mb-10 mt-4'
-        onClick={handleNextPage}
-      >
-        Next page :D
-      </button> */}
       <Helmet>
         <title>Results of {decodeURI(keyword)} | Ghiff</title>
         <meta
@@ -89,5 +76,3 @@ ListedGifs.propTypes = {
   keyword: PropTypes.string,
   raiting: PropTypes.string
 }
-
-// export default React.memo(ListedGifs)

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Gif from 'src/components/Gif'
 import { getRelatedGifs } from 'src/services/gifs'
 import PropTypes from 'prop-types'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function RelatedGifs({ gifID }) {
   const [loading, setLoading] = useState(false)
@@ -28,11 +29,7 @@ export default function RelatedGifs({ gifID }) {
         {gifs.map((gif) => (
           <>
             {loading && <h1>Loading</h1>}
-            <Gif
-              key={gif.id + String(Date.now())}
-              gifUrl={gif.images?.original.url}
-              id={gif.id}
-            />
+            <Gif key={uuidv4()} gifUrl={gif.images?.original.url} id={gif.id} />
           </>
         ))}
       </div>

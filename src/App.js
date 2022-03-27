@@ -3,20 +3,22 @@ import MainContent from './components/MainContent'
 import Home from './pages/Home'
 import Search from './pages/Search'
 import { Route } from 'wouter'
-import SearchBar from 'src/components/SearchBar'
+import { HelmetProvider } from 'react-helmet-async'
+import Gif from './pages/Gif'
 
 function App() {
   return (
-    <div className='bg-gray-900 min-h-screen'>
-      <Navbar />
+    <HelmetProvider>
+      <div className='bg-gray-900 min-h-screen'>
+        <Navbar />
 
-      <MainContent>
-        <SearchBar />
-
-        <Route path='/' component={Home} />
-        <Route path='/search/:keyword' component={Search} />
-      </MainContent>
-    </div>
+        <MainContent>
+          <Route path='/' component={Home} />
+          <Route path='/search/:keyword/:raiting?' component={Search} />
+          <Route path='/gif/:gifID' component={Gif} />
+        </MainContent>
+      </div>
+    </HelmetProvider>
   )
 }
 

@@ -1,4 +1,4 @@
-const API_KEY = 'NGAcmNPwJfuE8nc69hIWVDd8pkqJsh77'
+const API_KEY = process.env.REACT_APP_API_KEY
 const API_URL = `https://api.giphy.com/v1`
 
 export const getGifs = (signal) => {

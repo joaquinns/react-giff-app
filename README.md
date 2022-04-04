@@ -1,3 +1,5 @@
+![Screenshoot](https://github.com/joaquinns/react-giff-app/blob/main/ghiffapp.JPG?raw=true)
+
 # Getting Started with Ghiff App
 
 ## Add .env.local file
